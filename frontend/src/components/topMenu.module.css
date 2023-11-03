@@ -1,0 +1,30 @@
+/* .menucontainer {
+    height: 60px;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+} */
+
+/* .logoimg {
+    margin-top: 4px;
+    margin-left: 10px;
+    height: 85%;
+    width: auto;
+    justify-content: flex-end;
+} */
+
+/* .itemcontainer {
+    width: 120px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family:  Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 10pt;
+    color: grey;
+} */
