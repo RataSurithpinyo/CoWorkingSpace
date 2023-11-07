@@ -1,3 +1,10 @@
 # This repository is a part of 2110507 Software Development Practice
-### 6330445021 Matt Yongpitakul
-### 6330454721 Rata Surithpinyo
+### Matt Yongpitakul
+### Rata Surithpinyo
+------
+#### Front-End: Please use npm run dev & see localhost:3000
+#### Back-End: Please use npm run dev & see localhost:8080
+#### To see Swagger, go to http://localhost:8080/api-docs/
+
+
+
