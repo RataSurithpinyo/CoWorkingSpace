@@ -8,7 +8,7 @@ export default function TopMenuItem({
   pageRef: string;
 }) {
   return (
-    <div className="w-28 text-center mt-4 mb-auto color underline decoration-sky-500 text-black">
+    <div className="w-28 text-center mt-4 mb-auto color underline decoration-green-500 text-black">
       <Link href={pageRef}>{title}</Link>
     </div>
   );

@@ -36,10 +36,10 @@ export default function Banner() {
           className="text-4xl font-semibold"
           style={{ marginTop: "40px", marginBottom: "10px" }}
         >
-          Vaccine Service Center
+          Coworking Space
         </h1>
         <h3 className="text-xl">
-          Find the right hospital. Make an appointment.
+          Find the right Coworking Space with pleasing facilities
         </h3>
       </div>
       {session ? (
@@ -49,15 +49,15 @@ export default function Banner() {
         </div>
       ) : null}
       <button
-        className="bg-white text-cyan-600 border border-cyan-600 
-      font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-1 right-2 hover:bg-cyan-600 hover:text-white"
+        className="bg-white text-green-600 border border-green-600 
+      font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-1 right-2 hover:bg-green-600 hover:text-white"
         onClick={(e) => {
           router.push("/hospital");
           e.stopPropagation();
         }}
       >
         {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
-        Select your hospital NOW
+        All Coworking Spaces
       </button>
     </div>
   );

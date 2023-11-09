@@ -15,9 +15,9 @@ export default function VdoPlayer({
     if (isPlaying) vdoRef.current?.play();
     else vdoRef.current?.pause();
   }, [isPlaying]); // useEffect นี้จะทำงานก็ต่อเมื่อค่าของ isPlaying มีการเปลี่ยนแปลง
-  useWindowListener("resize", (e) => {
-    alert((e.target as Window).innerWidth);
-  });
+  // useWindowListener("resize", (e) => {
+  //   alert((e.target as Window).innerWidth);
+  // });
 
   return (
     <video className="w-[40%]" src={vdoSrc} ref={vdoRef} controls loop muted />
