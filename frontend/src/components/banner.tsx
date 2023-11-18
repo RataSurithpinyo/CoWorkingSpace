@@ -45,7 +45,7 @@ export default function Banner() {
       {session ? (
         <div className="mt-2 z-30 absolute top-5 right-10 font-semibold text-white text-lg">
           {" "}
-          Welcome, {session.user?.name}{" "}
+          Welcome back {session.user?.name}{" "}
         </div>
       ) : null}
       <button

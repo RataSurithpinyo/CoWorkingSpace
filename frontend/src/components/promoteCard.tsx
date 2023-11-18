@@ -20,6 +20,7 @@ export default function PromoteCard() {
         <button
           className="block rounded-md bg-sky-600 hover:bg-sky-400 px-3 py-2
            text-white shadow-sm mt-2"
+           onClick={() => {router.push('/register')}}
         >
           Sign Up
         </button>
