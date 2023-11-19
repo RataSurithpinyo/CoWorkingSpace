@@ -43,16 +43,16 @@ export default async function Hospital() {
     } catch (error) {
       console.log(error);
     }
-    revalidateTag("hospitals");
-    redirect("/hospital");
+    revalidateTag("coworkingspaces");
+    redirect("/coworkingspace");
   };
 
   return (
     <main>
       <div className="mt-24">
-        <h2 className="text-center text-xl underline decoration-sky-500">
-          Select your hospital
-        </h2>
+        <h1 className="text-center text-xl underline decoration-green-500 font-bold text-2xl">
+          Select your desired coworking spaces
+        </h1>
         <Suspense
           fallback={
             <p className="mt-6 text-center">

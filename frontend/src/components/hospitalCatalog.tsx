@@ -9,8 +9,8 @@ export default async function HospitalCatalog({ hospitalPromise }) {
   // }
   return (
     <>
-      <h3 className="text-center">
-        Explore {hospitalJsonReady.count} models in our catalog
+      <h3 className="text-center mt-4">
+        {hospitalJsonReady.count} coworking space(s) found in our system
       </h3>
       <div
         style={{
@@ -25,7 +25,7 @@ export default async function HospitalCatalog({ hospitalPromise }) {
         {hospitalJsonReady.data.map((hospitalItem) => (
           <Link
             key={hospitalItem.id}
-            href={`/hospital/${hospitalItem.id}`}
+            href={`/coworkingspace/${hospitalItem.id}`}
             className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%] p-2 sm:p-4 md:p-4 lg:p-8"
           >
             <Card

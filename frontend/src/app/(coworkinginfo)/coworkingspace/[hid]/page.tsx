@@ -11,7 +11,7 @@ export default async function hospitalDetailPage({
 
   return (
     <main className="mt-20 text-center p-10">
-      <h1 className="font-medium text-2xl underline decoration-sky-500">
+      <h1 className="font-bold text-2xl underline decoration-green-500">
         {hospitalDetail.data.name}
       </h1>
       <div className="flex flex-row my-5">
@@ -21,7 +21,7 @@ export default async function hospitalDetailPage({
           width={0}
           height={0}
           sizes="100vh"
-          className="rounded-lg w-[30%]"
+          className="rounded-lg w-[30%] drop-shadow-xl"
         />
         <div className="text-left">
           <div className="text-md mx-5">Name: {hospitalDetail.data.name}</div>
@@ -36,9 +36,15 @@ export default async function hospitalDetailPage({
           </div>
           <div className="text-md mx-5">Tel: {hospitalDetail.data.tel}</div>
           <Link href={`/booking?id=${params.hid}&hospital=${hospitalDetail.data.name}`}>
-            <button className="ml-4 mt-4 block rounded-md bg-sky-600 hover:bg-indigo-950 px-3 py-2 text-white shadow-sm">
+            {/* <button className="ml-4 mt-4 block rounded-md bg-sky-600 hover:bg-indigo-950 px-3 py-2 text-white shadow-sm">
               Make Reservation
-            </button>
+            </button> */}
+            <button
+          className="ml-4 mt-4 block rounded-md bg-green-600 text-white px-3 py-2
+            shadow-sm hover:bg-green-200 hover:text-black hover:border-2 hover:border-green-500"
+        >
+          Make Reservation
+        </button>
           </Link>
         </div>
       </div>

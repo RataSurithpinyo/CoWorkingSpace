@@ -33,11 +33,11 @@ export default function Card({
         />
       </div>
       <div>
-        <h3 className="ml-2 mt-2 w-full h-[30%] p-[5px] font-normal underline decoration-sky-500">
+        <h3 className="ml-2 mt-2 w-full h-[30%] p-[5px] font-bold underline decoration-green-500">
           {hospitalName}
         </h3>
       </div>
-      <div className="ml-2 w-full h-[30%] p-[5px] font-normal decoration-sky-500">
+      <div className="ml-2 w-full h-[30%] p-[5px] font-normal decoration-green-500">
         {/* <h3>Rating</h3> */}
         {hospitalList ? (
           <Rating

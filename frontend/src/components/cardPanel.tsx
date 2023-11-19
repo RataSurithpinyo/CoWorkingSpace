@@ -56,7 +56,7 @@ export default function CardPanel() {
         }}
       >
         {mockHospital.map((hospitalItem) => (
-          <Link href={`/hospital/${hospitalItem.hid}`} className="w-1/5">
+          <Link href={`/coworkingspace/${hospitalItem.hid}`} className="w-1/5">
             <Card
               hospitalName={hospitalItem.name}
               imgSrc={hospitalItem.image}

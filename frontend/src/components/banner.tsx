@@ -45,14 +45,14 @@ export default function Banner() {
       {session ? (
         <div className="mt-2 z-30 absolute top-5 right-10 font-semibold text-white text-lg">
           {" "}
-          Welcome back {session.user?.name}{" "}
+          Welcome back :-) {session.user?.name}{" "}
         </div>
       ) : null}
       <button
         className="bg-white text-green-600 border border-green-600 
       font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-1 right-2 hover:bg-green-600 hover:text-white"
         onClick={(e) => {
-          router.push("/hospital");
+          router.push("/coworkingspace");
           e.stopPropagation();
         }}
       >

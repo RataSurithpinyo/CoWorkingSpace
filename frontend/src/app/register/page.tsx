@@ -27,8 +27,8 @@ export default function Signup() {
         }
       );
       if (response.ok) {
-        alert("Create user successfully.")
-        console.log("Created user succesfully! Please sign out and log in to use our services.");
+        alert("Create user successfully. Please sign out and log in to use our services.")
+        console.log("Created user succesfully!");
         router.push('/api/auth/signout')
       } else {
         alert("Error has occured. Please make sure that you fill all the fields correctly.")
@@ -139,8 +139,8 @@ export default function Signup() {
             <div className="flex flex-col items-center">
               <button
                 type="submit"
-                className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2
-           text-white shadow-sm mt-2"
+                className="block rounded-md bg-sky-600 hover:bg-sky-400 px-3 py-2
+                text-white shadow-sm mt-2"
                 onClick={() => {
                   userResgister();
                 }}

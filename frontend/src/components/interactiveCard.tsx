@@ -16,11 +16,11 @@ export default function InteractiveCard({
       event.currentTarget.classList.remove("shadow-lg");
       event.currentTarget.classList.add("shadow-2xl");
       event.currentTarget.classList.remove("bg-white");
-      event.currentTarget.classList.add("bg-neutral-200");
+      event.currentTarget.classList.add("bg-emerald-50");
     } else {
       event.currentTarget.classList.remove("shadow-2xl");
       event.currentTarget.classList.add("shadow-lg");
-      event.currentTarget.classList.remove("bg-neutral-200");
+      event.currentTarget.classList.remove("bg-emerald-50");
       event.currentTarget.classList.add("bg-white");
     }
   }
