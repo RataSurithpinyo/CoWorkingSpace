@@ -2,15 +2,15 @@ import React, { Suspense } from "react";
 import Card from "./card";
 import Link from "next/link";
 
-export default async function HospitalCatalog({ hospitalPromise }) {
-  const hospitalJsonReady = await hospitalPromise;
-  // if (!hospitalJsonReady) {
+export default async function CoworkingspaceCatalog({ coworkingspacePromise }) {
+  const coworkingspaceJsonReady = await coworkingspacePromise;
+  // if (!coworkingspaceJsonReady) {
   //   return null;
   // }
   return (
     <>
       <h3 className="text-center mt-4">
-        {hospitalJsonReady.count} coworking space(s) found in our system
+        {coworkingspaceJsonReady.count} coworking space(s) found in our system
       </h3>
       <div
         style={{
@@ -22,15 +22,15 @@ export default async function HospitalCatalog({ hospitalPromise }) {
           flexWrap: "wrap",
         }}
       >
-        {hospitalJsonReady.data.map((hospitalItem) => (
+        {coworkingspaceJsonReady.data.map((coworkingspaceItem) => (
           <Link
-            key={hospitalItem.id}
-            href={`/coworkingspace/${hospitalItem.id}`}
+            key={coworkingspaceItem.id}
+            href={`/coworkingspace/${coworkingspaceItem.id}`}
             className="w-[100%] sm:w-[50%] md:w-[30%] lg:w-[25%] p-2 sm:p-4 md:p-4 lg:p-8"
           >
             <Card
-              hospitalName={hospitalItem.name}
-              imgSrc={hospitalItem.picture}
+              coworkingspaceName={coworkingspaceItem.name}
+              imgSrc={coworkingspaceItem.picture}
             />
           </Link>
         ))}

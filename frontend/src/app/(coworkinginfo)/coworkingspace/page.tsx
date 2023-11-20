@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import HospitalCatalog from "@/components/hospitalCatalog";
 import { LinearProgress } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -10,6 +9,7 @@ import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import getCoworkingspaces from "@/libs/getCoworkingspaces";
 import AddCoworkingspaceForm from "@/components/addCoworkingspaceForm";
+import CoworkingspaceCatalog from "@/components/CoworkingspaceCatalog";
 
 export default async function Hospital() {
   const hospitalsPromise = getCoworkingspaces(); // Promise
@@ -60,7 +60,7 @@ export default async function Hospital() {
             </p>
           }
         >
-          <HospitalCatalog hospitalPromise={hospitalsPromise} />
+          <CoworkingspaceCatalog coworkingspacePromise={hospitalsPromise} />
           {profile.data.role == "admin" ? (
             <AddCoworkingspaceForm action={addHospital} />
           ) : null}
