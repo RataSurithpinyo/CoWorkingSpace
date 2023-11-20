@@ -60,17 +60,10 @@ export default async function Hospital() {
             </p>
           }
         >
-<<<<<<< HEAD
-          <HospitalCatalog hospitalPromise={hospitalsPromise} />
-          {/* {profile.data.role == "admin" ? (
-            <AddHospitalForm action={addHospital} />
-          ) : null} */}
-=======
           <CoworkingspaceCatalog coworkingspacePromise={hospitalsPromise} />
-          {profile.data.role == "admin" ? (
+          {/* {profile.data.role == "admin" ? (
             <AddCoworkingspaceForm action={addHospital} />
-          ) : null}
->>>>>>> b5bd75ef16e671230a2ebdea6754d97c7b5c5a1d
+          ) : null} */}
         </Suspense>
       </div>
     </main>
