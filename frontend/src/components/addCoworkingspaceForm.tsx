@@ -1,11 +1,11 @@
-export default function AddHospitalForm({
+export default function AddCoworkingspaceForm({
   action,
 }: {
-  action: (addHospitalForm: FormData) => Promise<never>;
+  action: (addCoworkingspaceForm: FormData) => Promise<never>;
 }) {
   return (
     <form action={action} className="ml-28 mb-12">
-      <div className="text-xl text-blue-700">Add Hospital Form</div>
+      <div className="text-xl text-blue-700">Add Coworking Space Form</div>
       <div className="flex items-center w-1/2 my-2">
         <label className="w-auto block text-gray-700 pr-4" htmlFor="name">
           Name
@@ -15,7 +15,7 @@ export default function AddHospitalForm({
           required
           id="name"
           name="name"
-          placeholder="Hospital Name"
+          placeholder="Coworking Space Name"
           className="bg-white border-2 border-gray-200 rounded w-full p-2
             text-gray-700 focus:outline-none focus:border-blue-400"
         />
@@ -116,7 +116,7 @@ export default function AddHospitalForm({
         type="submit"
         className="ml-0 mt-4 block rounded-md bg-sky-600 hover:bg-indigo-950 px-3 py-2 text-white shadow-sm"
       >
-        Add Hospital
+        Add Coworking Space
       </button>
     </form>
   );

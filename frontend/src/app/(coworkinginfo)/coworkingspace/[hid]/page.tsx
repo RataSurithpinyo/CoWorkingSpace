@@ -1,5 +1,5 @@
+import getCoworkingspace from "@/libs/getCoworkingspace";
 import Image from "next/image";
-import getHospital from "@/libs/getHospital";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -9,7 +9,7 @@ export default async function hospitalDetailPage({
 }: {
   params: { hid: string };
 }) {
-  const hospitalDetail = await getHospital(params.hid);
+  const hospitalDetail = await getCoworkingspace(params.hid);
   const session = await getServerSession(authOptions);
   if (!session || !session.user.token) return null;
   const profile = await getUserProfile(session.user.token);

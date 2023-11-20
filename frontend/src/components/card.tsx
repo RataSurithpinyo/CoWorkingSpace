@@ -5,16 +5,15 @@ import InteractiveCard from "./interactiveCard";
 import Rating from "@mui/material/Rating";
 
 export default function Card({
-  hospitalName,
+  coworkingspaceName,
   openingHour,
   imgSrc,
-  hospitalList,
+  coworkingspaceList,
   ratingValue,
 }: {
   hospitalName: string;
-  openingHour: string;
   imgSrc: string;
-  hospitalList?: (hospitalName: string, rating: number) => void;
+  coworkingspaceList?: (coworkingspaceName: string, rating: number) => void;
   ratingValue?: number;
 }) {
   const [value, setValue] = useState(ratingValue);
@@ -25,7 +24,7 @@ export default function Card({
   }, [ratingValue]);
 
   return (
-    <InteractiveCard contentName={hospitalName}>
+    <InteractiveCard contentName={coworkingspaceName}>
       <div className="w-full h-[60%] relative rounded-t-lg">
         <Image
           src={imgSrc}
@@ -36,7 +35,7 @@ export default function Card({
       </div>
       <div>
         <h3 className="ml-2 mt-2 w-full h-[30%] p-[5px] font-bold underline decoration-green-500">
-          {hospitalName}
+          {coworkingspaceName}
         </h3>
       </div>
       <div>
@@ -46,9 +45,9 @@ export default function Card({
       </div>
       <div className="ml-2 w-full h-[30%] p-[5px] font-normal decoration-green-500">
         {/* <h3>Rating</h3> */}
-        {hospitalList ? (
+        {coworkingspaceList ? (
           <Rating
-            id={hospitalName}
+            id={coworkingspaceName}
             name="simple-controlled"
             value={value}
             onClick={(e) => {
@@ -57,7 +56,7 @@ export default function Card({
             onChange={(event, newValue) => {
               const ratingValue = newValue ?? 0;
               setValue(ratingValue);
-              hospitalList(hospitalName, ratingValue);
+              coworkingspaceList(coworkingspaceName, ratingValue);
             }}
           />
         ) : (

@@ -1,18 +1,18 @@
 import React, { Suspense } from "react";
-import getHospitals from "@/libs/getHospitals";
-import HospitalCatalog from "@/components/hospitalCatalog";
 import { LinearProgress } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
-import AddHospitalForm from "@/components/addHospitalForm";
 import { dbConnect } from "@/db/dbConnect";
 import HospitalDB from "@/db/models/Hospital";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import getCoworkingspaces from "@/libs/getCoworkingspaces";
+import AddCoworkingspaceForm from "@/components/addCoworkingspaceForm";
+import CoworkingspaceCatalog from "@/components/CoworkingspaceCatalog";
 
 export default async function Hospital() {
-  const hospitalsPromise = getHospitals(); // Promise
+  const hospitalsPromise = getCoworkingspaces(); // Promise
   const session = await getServerSession(authOptions);
   if (!session || !session.user.token) return null;
   const profile = await getUserProfile(session.user.token);
@@ -60,10 +60,17 @@ export default async function Hospital() {
             </p>
           }
         >
+<<<<<<< HEAD
           <HospitalCatalog hospitalPromise={hospitalsPromise} />
           {/* {profile.data.role == "admin" ? (
             <AddHospitalForm action={addHospital} />
           ) : null} */}
+=======
+          <CoworkingspaceCatalog coworkingspacePromise={hospitalsPromise} />
+          {profile.data.role == "admin" ? (
+            <AddCoworkingspaceForm action={addHospital} />
+          ) : null}
+>>>>>>> b5bd75ef16e671230a2ebdea6754d97c7b5c5a1d
         </Suspense>
       </div>
     </main>
