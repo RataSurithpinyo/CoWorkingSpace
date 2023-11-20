@@ -4,12 +4,12 @@ import { LinearProgress } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
-import AddHospitalForm from "@/components/addHospitalForm";
 import { dbConnect } from "@/db/dbConnect";
 import HospitalDB from "@/db/models/Hospital";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import getCoworkingspaces from "@/libs/getCoworkingspaces";
+import AddCoworkingspaceForm from "@/components/addCoworkingspaceForm";
 
 export default async function Hospital() {
   const hospitalsPromise = getCoworkingspaces(); // Promise
@@ -62,7 +62,7 @@ export default async function Hospital() {
         >
           <HospitalCatalog hospitalPromise={hospitalsPromise} />
           {profile.data.role == "admin" ? (
-            <AddHospitalForm action={addHospital} />
+            <AddCoworkingspaceForm action={addHospital} />
           ) : null}
         </Suspense>
       </div>
