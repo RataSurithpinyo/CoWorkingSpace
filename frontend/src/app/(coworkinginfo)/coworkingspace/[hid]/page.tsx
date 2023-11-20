@@ -1,13 +1,19 @@
 import Image from "next/image";
 import getHospital from "@/libs/getHospital";
 import Link from "next/link";
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import getUserProfile from "@/libs/getUserProfile";
 export default async function hospitalDetailPage({
   params,
 }: {
   params: { hid: string };
 }) {
   const hospitalDetail = await getHospital(params.hid);
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user.token) return null;
+  const profile = await getUserProfile(session.user.token);
+  console.log(profile.data.role)
 
   return (
     <main className="mt-20 text-center p-10">
@@ -36,15 +42,16 @@ export default async function hospitalDetailPage({
           </div>
           <div className="text-md mx-5">Tel: {hospitalDetail.data.tel}</div>
           <Link href={`/booking?id=${params.hid}&hospital=${hospitalDetail.data.name}`}>
-            {/* <button className="ml-4 mt-4 block rounded-md bg-sky-600 hover:bg-indigo-950 px-3 py-2 text-white shadow-sm">
-              Make Reservation
-            </button> */}
-            <button
+          {profile.data.role == "admin" ? (
+            null
+          ) : 
+          <button
           className="ml-4 mt-4 block rounded-md bg-green-600 text-white px-3 py-2
             shadow-sm hover:bg-green-200 hover:text-black hover:border-2 hover:border-green-500"
         >
           Make Reservation
-        </button>
+        </button>  
+          }
           </Link>
         </div>
       </div>
@@ -52,7 +59,7 @@ export default async function hospitalDetailPage({
   );
 }
 
-export async function generateStaticParams() {
-  //return an array
-  return [{ hid: "001" }, { hid: "002" }, { hid: "003" }];
-}
+// export async function generateStaticParams() {
+//   //return an array
+//   return [{ hid: "001" }, { hid: "002" }, { hid: "003" }];
+// }

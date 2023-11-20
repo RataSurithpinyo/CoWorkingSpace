@@ -25,6 +25,7 @@ export default function Banner() {
       }}
     >
       <Image
+        className="mt-0"
         src={covers[index % 4]}
         alt="cover"
         fill={true}
@@ -48,7 +49,9 @@ export default function Banner() {
           Welcome back :-) {session.user?.name}{" "}
         </div>
       ) : null}
-      <button
+      
+        {session ? (
+        <button
         className="bg-white text-green-600 border border-green-600 
       font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-1 right-2 hover:bg-green-600 hover:text-white"
         onClick={(e) => {
@@ -56,9 +59,10 @@ export default function Banner() {
           e.stopPropagation();
         }}
       >
-        {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
         All Coworking Spaces
-      </button>
+        </button>
+      ) : null}
+        {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
     </div>
   );
 }

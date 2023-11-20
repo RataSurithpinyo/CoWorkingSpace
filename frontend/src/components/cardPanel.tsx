@@ -59,6 +59,7 @@ export default function CardPanel() {
           <Link href={`/coworkingspace/${hospitalItem.hid}`} className="w-1/5">
             <Card
               hospitalName={hospitalItem.name}
+              openingHour={hospitalItem.name}
               imgSrc={hospitalItem.image}
               hospitalList={(hospital, rating) =>
                 dispatchList({ type: "add", hospitalName: hospital, rating })

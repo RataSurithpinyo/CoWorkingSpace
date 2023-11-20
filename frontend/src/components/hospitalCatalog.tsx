@@ -30,6 +30,7 @@ export default async function HospitalCatalog({ hospitalPromise }) {
           >
             <Card
               hospitalName={hospitalItem.name}
+              openingHour={hospitalItem.operatingHours}
               imgSrc={hospitalItem.picture}
             />
           </Link>

@@ -50,7 +50,7 @@ export default async function Hospital() {
   return (
     <main>
       <div className="mt-24">
-        <h1 className="text-center text-xl underline decoration-green-500 font-bold text-2xl">
+        <h1 className="text-center underline decoration-green-500 font-bold text-2xl">
           Select your desired coworking spaces
         </h1>
         <Suspense
@@ -61,9 +61,9 @@ export default async function Hospital() {
           }
         >
           <HospitalCatalog hospitalPromise={hospitalsPromise} />
-          {profile.data.role == "admin" ? (
+          {/* {profile.data.role == "admin" ? (
             <AddHospitalForm action={addHospital} />
-          ) : null}
+          ) : null} */}
         </Suspense>
       </div>
     </main>

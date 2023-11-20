@@ -6,11 +6,13 @@ import Rating from "@mui/material/Rating";
 
 export default function Card({
   hospitalName,
+  openingHour,
   imgSrc,
   hospitalList,
   ratingValue,
 }: {
   hospitalName: string;
+  openingHour: string;
   imgSrc: string;
   hospitalList?: (hospitalName: string, rating: number) => void;
   ratingValue?: number;
@@ -35,6 +37,11 @@ export default function Card({
       <div>
         <h3 className="ml-2 mt-2 w-full h-[30%] p-[5px] font-bold underline decoration-green-500">
           {hospitalName}
+        </h3>
+      </div>
+      <div>
+        <h3 className="ml-2 w-full h-[30%] p-[5px]">
+          Opening Hours: {openingHour}
         </h3>
       </div>
       <div className="ml-2 w-full h-[30%] p-[5px] font-normal decoration-green-500">
