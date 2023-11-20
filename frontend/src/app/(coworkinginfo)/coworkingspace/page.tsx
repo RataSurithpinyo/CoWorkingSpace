@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import getHospitals from "@/libs/getHospitals";
 import HospitalCatalog from "@/components/hospitalCatalog";
 import { LinearProgress } from "@mui/material";
 import { getServerSession } from "next-auth";
@@ -10,9 +9,10 @@ import { dbConnect } from "@/db/dbConnect";
 import HospitalDB from "@/db/models/Hospital";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import getCoworkingspaces from "@/libs/getCoworkingspaces";
 
 export default async function Hospital() {
-  const hospitalsPromise = getHospitals(); // Promise
+  const hospitalsPromise = getCoworkingspaces(); // Promise
   const session = await getServerSession(authOptions);
   if (!session || !session.user.token) return null;
   const profile = await getUserProfile(session.user.token);

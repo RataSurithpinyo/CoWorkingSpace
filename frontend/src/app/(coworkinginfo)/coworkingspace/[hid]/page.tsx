@@ -1,5 +1,5 @@
+import getCoworkingspace from "@/libs/getCoworkingspace";
 import Image from "next/image";
-import getHospital from "@/libs/getHospital";
 import Link from "next/link";
 
 export default async function hospitalDetailPage({
@@ -7,7 +7,7 @@ export default async function hospitalDetailPage({
 }: {
   params: { hid: string };
 }) {
-  const hospitalDetail = await getHospital(params.hid);
+  const hospitalDetail = await getCoworkingspace(params.hid);
 
   return (
     <main className="mt-20 text-center p-10">
