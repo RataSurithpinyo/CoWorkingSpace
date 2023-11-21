@@ -17,5 +17,7 @@ export default async function UserLogin(
   if (!response.ok) {
     throw new Error("Failed to log-in");
   }
+  console.log("res:", response);
+  // localStorage.setItem('username', response.formData.name)
   return await response.json();
 }

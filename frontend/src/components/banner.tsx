@@ -17,6 +17,7 @@ export default function Banner() {
   const { data: session } = useSession();
   console.log(session);
   console.log(session?.user.token);
+  if (session) localStorage.setItem("username", session.user.name);
   return (
     <div
       className={styles.banner}
@@ -49,20 +50,20 @@ export default function Banner() {
           Welcome back :-) {session.user?.name}{" "}
         </div>
       ) : null}
-      
-        {session ? (
+
+      {session ? (
         <button
-        className="bg-white text-green-600 border border-green-600 
+          className="bg-white text-green-600 border border-green-600 
       font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-1 right-2 hover:bg-green-600 hover:text-white"
-        onClick={(e) => {
-          router.push("/coworkingspace");
-          e.stopPropagation();
-        }}
-      >
-        All Coworking Spaces
+          onClick={(e) => {
+            router.push("/coworkingspace");
+            e.stopPropagation();
+          }}
+        >
+          All Coworking Spaces
         </button>
       ) : null}
-        {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
+      {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
     </div>
   );
 }

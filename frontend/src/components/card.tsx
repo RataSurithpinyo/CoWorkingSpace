@@ -12,6 +12,7 @@ export default function Card({
   ratingValue,
 }: {
   hospitalName: string;
+  openingHour: string;
   imgSrc: string;
   coworkingspaceList?: (coworkingspaceName: string, rating: number) => void;
   ratingValue?: number;

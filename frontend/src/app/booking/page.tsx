@@ -11,131 +11,60 @@ import { addReservation } from "@/redux/features/bookSlice";
 
 export default function Booking() {
   const urlParams = useSearchParams();
-  const hid = urlParams.get("id");
-  const hospital = urlParams.get("hospital");
-  // console.log("hid & hospital", hid, hospital)
-  // name, id, hospital, date
+  const cid = urlParams.get("id");
+  const coworking = urlParams.get("coworking");
   const dispatch = useDispatch<AppDispatch>();
   const makeBooking = () => {
-    console.log("test click");
-    if (hid && hospital && date && name) {
+    // connect backend here
+    if (cid && numOfRooms && coworking && bookingDate) {
       const item: BookingItem = {
-        name: name,
-        surname: surname,
-        id: id,
-        hospital: hospital,
-        bookDate: dayjs(date).format("YYYY/MM/DD"),
+        user: localStorage.getItem("username") ?? "",
+        numOfRooms: numOfRooms,
+        id: cid,
+        coworkingspace: coworking,
+        bookingDate: bookingDate.toDate(),
       };
-      console.log(item);
+      console.log("item:",item);
       dispatch(addReservation(item));
     }
   };
-  const [date, setDate] = useState<Dayjs | null>(null);
-  const [name, setName] = useState<string>("");
-  const [surname, setSurname] = useState<string>("");
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
-  const handleSurnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSurname(event.target.value);
-  };
-  const [id, setId] = useState<string>("");
-  const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setId(event.target.value);
-  };
-  const [bookHospital, setBookHospital] = useState<string>(
-    "Chulalongkorn Hospital"
-  );
-  const handleHospitalChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const selectedHospital = event.target.value;
-    setBookHospital(selectedHospital);
-  };
+  const [bookingDate, setbookingDate] = useState<Dayjs | null>(null);
+  const [numOfRooms, setnumOfRooms] = useState<number>(1);
 
   return (
     <main className="w-[100%] flex flex-col items-center space-y-4">
-      {/* <div className="mt-8 text-xl text-center ">
-        Hospital: {hospital}
-      </div> */}
-      <div className="mt-4 text-xl text-center underline decoration-sky-500 ">
-        Book Your Vaccination
+      <div className="mt-10 mb-0 font-semibold text-xl text-center underline decoration-green-500 ">
+        Your selected coworking space: {coworking}
       </div>
-
       <div className="w-fit space-y-2">
-        <div className="text-md text-left text-gray-600">
-          <label className="block">
-            <span className="text-slate-700">ชื่อ</span>
-            <input
-              type="text"
-              className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm  
-          "
-              value={name}
-              onChange={handleNameChange}
-            />
-          </label>
-        </div>
-
-        <div className="text-md text-left text-gray-600">
-          <label className="block">
-            <span className="text-slate-700">นามสกุล</span>
-            <input
-              type="text"
-              className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm  
-          "
-              value={surname}
-              onChange={handleSurnameChange}
-            />
-          </label>
-        </div>
-
-        <div className="text-md text-left text-gray-600 ">
-          <label className="block">
-            <span className="text-slate-700">รหัสประจำตัวประชาชน</span>
-            <input
-              type="text"
-              className="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm"
-              value={id}
-              onChange={handleIdChange}
-            />
-          </label>
-        </div>
-
-        <div className="text-md text-left text-gray-600">
-          <label className="block">
-            <span className="text-slate-700">โรงพยาบาล</span>
-            {/* <select
-              className="mt-1 block w-[100%] pl-2 pr-2 py-2 bg-white border border-slate-300 rounded-md text-sm"
-              value={bookHospital}
-              onChange={handleHospitalChange}
-            >
-              <option value="Chulalongkorn Hospital">
-                Chulalongkorn Hospital
-              </option>
-              <option value="Rajavithi Hospital">Rajavithi Hospital</option>
-              <option value="Thammasat University Hospital">
-                Thammasat University Hospital
-              </option>
-            </select> */}
-            <p>Your selected hospital: {hospital}</p>
-          </label>
-        </div>
-
-        <div className="text-md text-left text-gray-600">
-          <div className="mt-3">วันที่ต้องการรับวัคซีน</div>
+        <div className="text-md text-left text-black">
+          <div className="mt-3">วันที่ต้องการจอง coworking space</div>
           <DateReserve
             onDateChange={(value: Dayjs) => {
-              setDate(value);
+              setbookingDate(value);
             }}
           />
         </div>
+        <div className="mt-6">จำนวนห้องที่ต้องการจอง</div>
+        <input
+          min={1}
+          type="number"
+          id="numOfRooms"
+          name="numOfRooms"
+          placeholder="Enter a number"
+          required
+          value={numOfRooms}
+          onChange={(e) => setnumOfRooms(parseInt(e.target.value))}
+          className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
       </div>
 
       <button
-        className="block rounded-md bg-sky-600 hover:bg-indigo-950 px-3 py-2 text-white shadow-sm"
+        className="ml-4 mt-10 block rounded-md bg-green-600 text-white px-3 py-2
+        shadow-sm hover:bg-green-200 hover:text-black hover:border-2 hover:border-green-500"
         onClick={makeBooking}
       >
-        Book Hospital
+        Book Coworking Space
       </button>
     </main>
   );

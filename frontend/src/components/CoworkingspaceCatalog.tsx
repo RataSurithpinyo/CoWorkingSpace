@@ -30,6 +30,7 @@ export default async function CoworkingspaceCatalog({ coworkingspacePromise }) {
           >
             <Card
               coworkingspaceName={coworkingspaceItem.name}
+              openingHour={coworkingspaceItem.operatingHours}
               imgSrc={coworkingspaceItem.picture}
             />
           </Link>
