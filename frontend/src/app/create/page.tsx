@@ -1,13 +1,9 @@
 "use client";
-import getCoworkingspace from "@/libs/getCoworkingspace";
 import { getServerSession } from "next-auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function Manage() {
-  const urlParams = useSearchParams();
-  const cid = urlParams.get("id");
-  const coworkingName = urlParams.get("coworking");
   const router = useRouter();
   const [name, setName] = useState("");
   const [operatingHours, setOperatingHours] = useState("");
@@ -18,64 +14,30 @@ export default function Manage() {
   const [picture, setPicture] = useState("");
   const token = localStorage.getItem("token");
 
-  const handleUpdate = async () => {
-    try {
-      const updatedData = {
-        name: name.trim() !== "" ? name : undefined,
-        operatingHours:
-          operatingHours.trim() !== "" ? operatingHours : undefined,
-        address: address.trim() !== "" ? address : undefined,
-        province: province.trim() !== "" ? province : undefined,
-        postalcode: postalcode.trim() !== "" ? postalcode : undefined,
-        tel: tel.trim() !== "" ? tel : undefined,
-        picture: picture.trim() !== "" ? picture : undefined,
-      };
 
-      const filteredData = Object.fromEntries(
-        Object.entries(updatedData).filter(([_, value]) => value !== undefined)
-      );
-      console.log("filter", filteredData);
+  const handleCreate = async () => {
+    try {
       const response = await fetch(
-        `http://localhost:8080/api/v1/coworkingspaces/${cid}`,
+        `http://localhost:8080/api/v1/coworkingspaces`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(filteredData),
+          body: JSON.stringify({
+            name: name,
+            operatingHours: operatingHours,
+            address:address,
+            province:province,
+            postalcode:postalcode,
+            tel: tel,
+            picture:picture
+          }),
         }
       );
       if (response.ok) {
-        console.log(response);
-        alert("Updated coworking space successfully!");
-        router.push("/coworkingspace");
-        router.refresh();
-        // console.log("Created user succesfully!");
-      } else {
-        alert("An Error has occured. Please try again.");
-        window.location.reload();
-        // console.log("Error has occured.");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/coworkingspaces/${cid}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.ok) {
-        alert("Deleted coworking space successfully!");
+        alert("Created coworking space successfully!");
         router.push("/coworkingspace");
         // console.log("Created user succesfully!");
       } else {
@@ -93,10 +55,10 @@ export default function Manage() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-lg mt-6">
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-black underline decoration-green-500 ">
-            Edit Coworking Space Information
+            Create Coworking Space
           </h2>
           <h3 className="mt-2 text-center font-semibold leading-9 tracking-tight text-black">
-            Selected coworking space: {coworkingName}
+            Please fill in the information
           </h3>
         </div>
 
@@ -112,7 +74,6 @@ export default function Manage() {
                   onChange={(e) => setName(e.target.value)}
                   id="name"
                   name="name"
-                  placeholder="Update coworking space's name"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -128,7 +89,6 @@ export default function Manage() {
                   onChange={(e) => setOperatingHours(e.target.value)}
                   id="operatingHours"
                   name="operatingHours"
-                  placeholder="Update coworking space's operating hours"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -144,7 +104,6 @@ export default function Manage() {
                   onChange={(e) => setAddress(e.target.value)}
                   id="address"
                   name="address"
-                  placeholder="Update coworking space's adddress"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -160,7 +119,6 @@ export default function Manage() {
                   onChange={(e) => setProvince(e.target.value)}
                   id="province"
                   name="province"
-                  placeholder="Update coworking space's province"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -176,7 +134,6 @@ export default function Manage() {
                   onChange={(e) => setPostalcode(e.target.value)}
                   id="postalcode"
                   name="postalcode"
-                  placeholder="Update coworking space's postal code"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -197,7 +154,7 @@ export default function Manage() {
                   id="tel"
                   name="tel"
                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  placeholder="Update coworking space's tel"
+                  placeholder="xxx-xxx-xxxx"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -213,41 +170,31 @@ export default function Manage() {
                   onChange={(e) => setPicture(e.target.value)}
                   id="picture"
                   name="picture"
-                  placeholder="Update coworking space's picture"
+                  placeholder="Please use Google Drive direct download link"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-            <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-3">
-                <button
-                  type="submit"
-                  className="block rounded-md bg-red-600 text-white px-3 py-2
-                  shadow-sm hover:bg-red-200 hover:text-black hover:border-2 hover:border-red-500"
-                  onClick={() => {
-                    handleDelete();
-                  }}
-                >
-                  Delete Space
-                </button>
-              </div>
+        
+          </form>
 
-              <div className="sm:col-span-3 ml-10">
+          <div className="flex justify-center items-center mt-4 mb-10">
+                
                 <button
                   type="submit"
                   className="block rounded-md bg-green-600 text-white px-3 py-2
-                  shadow-sm hover:bg-green-200 hover:text-black hover:border-2 hover:border-green-500 mb-10"
+                  shadow-sm hover:bg-green-200 hover:text-black hover:border-2 hover:border-green-500"
                   onClick={() => {
-                    handleUpdate();
+                    handleCreate();
                   }}
                 >
-                  Save Changes
+                  Create
                 </button>
-              </div>
+
             </div>
-          </form>
         </div>
       </div>
     </>
   );
 }
+

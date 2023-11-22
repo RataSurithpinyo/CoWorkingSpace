@@ -27,7 +27,7 @@ export default function Signup() {
         }
       );
       if (response.ok) {
-        alert("Create user successfully. Please sign out and log in to use our services.")
+        alert("Create user successfully! Please sign out and log in to use our services.")
         console.log("Created user succesfully!");
         router.push('/api/auth/signout')
       } else {
