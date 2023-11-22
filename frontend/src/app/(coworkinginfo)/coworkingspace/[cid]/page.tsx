@@ -32,15 +32,21 @@ export default async function hospitalDetailPage({
           className="rounded-lg w-[30%] drop-shadow-xl"
         />
         <div className="text-left">
-          <div className="text-md mx-5">Name: {coworkingDetail.data.name}</div>
+          <div className="text-md mx-5 font-semibold">Name: {coworkingDetail.data.name}</div>
+          <div className="text-md mx-5">
+            Operating Hours: {coworkingDetail.data.operatingHours}
+          </div>
           <div className="text-md mx-5">
             Address: {coworkingDetail.data.address}
           </div>
           <div className="text-md mx-5">
-            Address: {coworkingDetail.data.province}
+            Province: {coworkingDetail.data.province}
           </div>
           <div className="text-md mx-5">
             Postal Code: {coworkingDetail.data.postalcode}
+          </div>
+          <div className="text-md mx-5">
+            Contact: {coworkingDetail.data.tel}
           </div>
           <div className="text-md mx-5">Tel: {coworkingDetail.data.tel}</div>
           <Link
@@ -54,7 +60,7 @@ export default async function hospitalDetailPage({
             </button>
             {profile.data.role !== "admin" ? null : (
               <div>
-                <Link href={`/manage?id=${params.cid}`}>
+                <Link href={`/manage?id=${params.cid}&coworking=${coworkingDetail.data.name}`}>
                   <button
                     className="ml-4 mt-4 block rounded-md bg-sky-600 hover:bg-sky-300 hover:text-black hover:border-2 hover:border-sky-600 px-3 py-2
                 text-white shadow-sm"

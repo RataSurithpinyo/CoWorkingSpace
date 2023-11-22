@@ -22,11 +22,11 @@ export default async function TopMenu() {
         </div>
       ) : (
         <div className="flex items-center">
-          {/* <Link href="/mybooking">
+          <Link href="/managebooking">
             <div className="w-64 text-center ml-2 mt-auto mb-auto color underline decoration-green-500 text-black">
-              Manage All Coworking Spaces
+              Manage Booking
             </div>
-          </Link> */}
+          </Link>
         </div>
       )}
 

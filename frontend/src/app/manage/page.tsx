@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function Manage() {
   const urlParams = useSearchParams();
   const cid = urlParams.get("id");
+  const coworkingName = urlParams.get("coworking")
   const router = useRouter();
   const [name, setName] = useState("");
   const [operatingHours, setOperatingHours] = useState("");
@@ -92,9 +93,12 @@ export default function Manage() {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-lg mt-6">
-          <h2 className="mt-6 text-center text-3xl font-bold leading-9 tracking-tight text-black">
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-black underline decoration-green-500 ">
             Edit Coworking Space Information
           </h2>
+          <h3 className="mt-2 text-center font-semibold leading-9 tracking-tight text-black">
+            Selected coworking space: {coworkingName}
+          </h3>
         </div>
 
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -216,7 +220,7 @@ export default function Manage() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center">
+            {/* <div className="flex flex-col items-center">
               <button
                 type="submit"
                 className="block rounded-md bg-sky-600 hover:bg-sky-400 px-3 py-2
@@ -237,7 +241,36 @@ export default function Manage() {
               >
                 Delete Coworking Space
               </button>
+            </div> */}
+    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-3">
+              <button
+                type="submit"
+                className="block rounded-md bg-sky-600 hover:bg-sky-400 px-3 py-2
+                text-white shadow-sm mt-2"
+                onClick={() => {
+                  handleUpdate();
+                }}
+              >
+                Save Changes
+              </button>
+               
+              </div>
+
+              <div className="sm:col-span-3">
+              <button
+                type="submit"
+                className="block rounded-md bg-sky-600 hover:bg-sky-400 px-3 py-2
+                text-white shadow-sm mt-2"
+                onClick={() => {
+                  handleDelete();
+                }}
+              >
+                Delete Coworking Space
+              </button>
+              </div>
             </div>
+
           </form>
         </div>
       </div>
