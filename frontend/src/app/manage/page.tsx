@@ -19,15 +19,20 @@ export default function Manage() {
 
   const handleUpdate = async () => {
     try {
-      console.log(JSON.stringify({
-        name: name,
-        operatingHours: operatingHours,
-        address: address,
-        province: province,
-        postalcode: postalcode,
-        tel: tel,
-        picture: picture,
-      }))
+      const updatedData = {
+        name: name.trim() !== "" ? name : undefined,
+        operatingHours: operatingHours.trim() !== "" ? operatingHours : undefined,
+        address: address.trim() !== "" ? address : undefined,
+        province: province.trim() !== "" ? province : undefined,
+        postalcode: postalcode.trim() !== "" ? postalcode : undefined,
+        tel: tel.trim() !== "" ? tel : undefined,
+        picture: picture.trim() !== "" ? picture : undefined,
+      };
+  
+      const filteredData = Object.fromEntries(
+        Object.entries(updatedData).filter(([_, value]) => value !== undefined)
+      );
+      console.log('filter', filteredData)
       const response = await fetch(
         `http://localhost:8080/api/v1/coworkingspaces/${cid}`,
         {
@@ -36,20 +41,16 @@ export default function Manage() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            name: name,
-            operatingHours: operatingHours,
-            address: address,
-            province: province,
-            postalcode: postalcode,
-            tel: tel,
-            picture: picture,
-          }),
+          body: JSON.stringify(
+            filteredData
+          ),
         }
       );
       if (response.ok) {
+        console.log(response)
         alert("Updated coworking space successfully");
         router.push("/coworkingspace");
+        router.refresh()
         // console.log("Created user succesfully!");
       } else {
         alert("An Error has occured. Please try again.");
@@ -104,7 +105,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   id="name"
@@ -121,7 +121,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={operatingHours}
                   onChange={(e) => setOperatingHours(e.target.value)}
                   id="operatingHours"
@@ -138,7 +137,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   id="address"
@@ -155,7 +153,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={province}
                   onChange={(e) => setProvince(e.target.value)}
                   id="province"
@@ -172,7 +169,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={postalcode}
                   onChange={(e) => setPostalcode(e.target.value)}
                   id="postalcode"
@@ -192,7 +188,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={tel}
                   onChange={(e) => setTel(e.target.value)}
                   type="tel"
@@ -211,7 +206,6 @@ export default function Manage() {
               </label>
               <div className="mt-2">
                 <input
-                  required
                   value={picture}
                   onChange={(e) => setPicture(e.target.value)}
                   id="picture"
