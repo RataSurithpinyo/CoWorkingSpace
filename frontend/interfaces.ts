@@ -1,5 +1,5 @@
 export interface BookingItem {
-  id: string;
+  id?: string;
   numOfRooms: number;
   user: string;
   coworkingspace: string;
