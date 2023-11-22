@@ -17,7 +17,10 @@ export default function Banner() {
   const { data: session } = useSession();
   console.log(session);
   console.log(session?.user.token);
-  if (session) localStorage.setItem("username", session.user.name);
+  if (session) {
+    localStorage.setItem("username", session.user.name);
+    localStorage.setItem("token", session.user.token);
+}
   return (
     <div
       className={styles.banner}
@@ -62,6 +65,7 @@ export default function Banner() {
         >
           All Coworking Spaces
         </button>
+        
       ) : null}
       {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
     </div>

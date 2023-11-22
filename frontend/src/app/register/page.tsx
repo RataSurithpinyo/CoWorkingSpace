@@ -31,7 +31,7 @@ export default function Signup() {
         console.log("Created user succesfully!");
         router.push('/api/auth/signout')
       } else {
-        alert("Error has occured. Please make sure that you fill all the fields correctly.")
+        alert("An Error has occured. Please make sure that you fill all the fields correctly.")
         console.log("Error has occured.");
         window.location.reload();
       }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
+
 export default async function hospitalDetailPage({
   params,
 }: {
@@ -13,7 +14,6 @@ export default async function hospitalDetailPage({
   const session = await getServerSession(authOptions);
   if (!session || !session.user.token) return null;
   const profile = await getUserProfile(session.user.token);
-  console.log(profile.data.role);
 
   return (
     <main className="mt-20 text-center p-10">
@@ -35,22 +35,32 @@ export default async function hospitalDetailPage({
             Address: {coworkingDetail.data.address}
           </div>
           <div className="text-md mx-5">
-            District: {coworkingDetail.data.district}
-          </div>
-          <div className="text-md mx-5">
             Postal Code: {coworkingDetail.data.postalcode}
           </div>
           <div className="text-md mx-5">Tel: {coworkingDetail.data.tel}</div>
           <Link
             href={`/booking?id=${params.cid}&coworking=${coworkingDetail.data.name}`}
           >
-            {profile.data.role == "admin" ? null : (
-              <button
-                className="ml-4 mt-4 block rounded-md bg-green-600 text-white px-3 py-2
+            <button
+                className="ml-4 mt-6 block rounded-md bg-green-600 text-white px-3 py-2
             shadow-sm hover:bg-green-200 hover:text-black hover:border-2 hover:border-green-500"
               >
                 Make Reservation
               </button>
+            {profile.data.role !== "admin" ? null : (
+              <div>
+                <Link
+            href={`/manage?id=${params.cid}`}
+          >
+              <button
+                className="ml-4 mt-4 block rounded-md bg-sky-600 hover:bg-sky-300 hover:text-black hover:border-2 hover:border-sky-600 px-3 py-2
+                text-white shadow-sm"
+                
+              >
+                Edit / Delete
+              </button>
+              </Link>
+            </div>
             )}
           </Link>
         </div>
@@ -59,7 +69,3 @@ export default async function hospitalDetailPage({
   );
 }
 
-// export async function generateStaticParams() {
-//   //return an array
-//   return [{ hid: "001" }, { hid: "002" }, { hid: "003" }];
-// }
