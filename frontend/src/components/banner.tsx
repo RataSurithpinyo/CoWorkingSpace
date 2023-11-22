@@ -10,7 +10,6 @@ export default function Banner() {
     "/img/cover.jpg",
     "/img/cover2.jpg",
     "/img/cover3.jpg",
-    "/img/cover4.jpg",
   ];
   const [index, setIndex] = useState(0);
   const router = useRouter();
@@ -30,7 +29,7 @@ export default function Banner() {
     >
       <Image
         className="mt-0"
-        src={covers[index % 4]}
+        src={covers[index % 3]}
         alt="cover"
         fill={true}
         objectFit="cover"

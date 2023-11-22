@@ -16,6 +16,18 @@ export default async function CoworkingspaceCatalog({ coworkingspacePromise }) {
       <h3 className="text-center mt-4">
         {coworkingspaceJsonReady.count} coworking space(s) found in the system.
       </h3>
+      {profile.data.role !== "admin" ? null : (
+              <div className="flex justify-center items-center">
+                <Link href={'/create'}>
+                  <button
+                    className="ml-4 mt-4 block rounded-md bg-sky-600 hover:bg-sky-300 hover:text-black hover:border-2 hover:border-sky-600 px-3 py-2
+                text-white shadow-sm"
+                  >
+                    Create new space
+                  </button>
+                </Link>
+              </div>
+            )}
       <div
         style={{
           margin: "30px",
