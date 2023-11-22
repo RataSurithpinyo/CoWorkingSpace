@@ -11,17 +11,26 @@ export const bookSlice = createSlice({
   name: "book",
   initialState,
   reducers: {
-    addReservation: (state, action: PayloadAction<BookingItem>) => {
-      if (state.bookItems.length > 0) {
-        state.bookItems = [];
-        state.bookItems.push(action.payload);
-      } else state.bookItems.push(action.payload);
+    addReservation: (state, action: PayloadAction<{ newBookingItem: BookingItem, coworkingspaceId: string }>) => {
+      if (state.bookItems.length < 3) {
+        state.bookItems.push(action.payload.newBookingItem);
+      } else {
+        throw("already booked three reservations")
+      }
     },
-    removeReservation: (state, action: PayloadAction<BookingItem>) => {
-      state.bookItems = []; // there is only possible 1 booking item
+    removeReservation: (state, action: PayloadAction<number>) => {
+      if (state.bookItems.length > action.payload) {
+        state.bookItems.splice(action.payload, 1)
+      } else {
+        throw("no such booking")
+      }
     },
+    editReservation: (state, action: PayloadAction<{ index: number, newBookingItem: BookingItem }>) => {
+
+      state.bookItems[action.payload.index] = action.payload.newBookingItem;
+    }
   },
 });
 
-export const { addReservation, removeReservation } = bookSlice.actions;
+export const { addReservation, removeReservation, editReservation } = bookSlice.actions;
 export default bookSlice.reducer;

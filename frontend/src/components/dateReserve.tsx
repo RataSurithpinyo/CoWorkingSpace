@@ -5,8 +5,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Select, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-export default function DateReserve({onDateChange}:{onDateChange: Function}) {
-  const [date, setDate] = useState<Dayjs|null>(null)
+export default function DateReserve({onDateChange, initialDate }:{onDateChange: Function, initialDate?: Dayjs}) {
+  const [date, setDate] = useState<Dayjs|null>(initialDate ?? null)
   return (
     <div
       className="mt-1 bg-white border border-slate-300 rounded-lg space-x-5 space-y-2

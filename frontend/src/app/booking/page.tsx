@@ -25,7 +25,7 @@ export default function Booking() {
         bookingDate: bookingDate.toDate(),
       };
       console.log("item:",item);
-      dispatch(addReservation(item));
+      dispatch(addReservation({ newBookingItem: item, coworkingspaceId: cid }));
     }
   };
   const [bookingDate, setbookingDate] = useState<Dayjs | null>(null);
