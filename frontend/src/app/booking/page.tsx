@@ -8,6 +8,7 @@ import { AppDispatch } from "@/redux/store";
 import App from "next/app";
 import { BookingItem } from "../../../interfaces";
 import { addReservation } from "@/redux/features/bookSlice";
+import { addBooking } from "@/libs/bookingManager";
 
 export default function Booking() {
   const router = useRouter()
@@ -21,13 +22,13 @@ export default function Booking() {
       const item: BookingItem = {
         user: localStorage.getItem("username") ?? "",
         numOfRooms: numOfRooms,
-        id: cid,
-        coworkingspace: coworking,
+        coworkingspace: cid,
         bookingDate: bookingDate.toDate(),
       };
       console.log("item:",item);
-      dispatch(addReservation({ newBookingItem: item, coworkingspaceId: cid }));
+      addBooking(item)
       router.push('/mybooking')
+      router.refresh()
     }
   };
   const [bookingDate, setbookingDate] = useState<Dayjs | null>(null);
@@ -50,6 +51,7 @@ export default function Booking() {
         <div className="mt-6">จำนวนห้องที่ต้องการจอง</div>
         <input
           min={1}
+          max={3}
           type="number"
           id="numOfRooms"
           name="numOfRooms"
