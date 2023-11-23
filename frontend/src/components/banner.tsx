@@ -53,7 +53,7 @@ export default function Banner() {
         </div>
       ) : null}
 
-      {session ? (
+      {/* {session ? (
         <button
           className="bg-white text-green-600 border border-green-600 
       font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-1 right-2 hover:bg-green-600 hover:text-white"
@@ -65,7 +65,7 @@ export default function Banner() {
           All Coworking Spaces
         </button>
         
-      ) : null}
+      ) : null} */}
       {/* ต้องยก layer ในแกน z ไม่งั้นจะไม่เห็นปุ่่ม */}
     </div>
   );
