@@ -38,7 +38,7 @@ export default function Banner() {
       <div className={styles.bannerText}>
         <h1
           className="text-4xl font-semibold"
-          style={{ marginTop: "40px", marginBottom: "10px" }}
+          style={{ marginTop: session ? "40px" : "0px", marginBottom: "10px" }}
         >
           Coworking Space
         </h1>
