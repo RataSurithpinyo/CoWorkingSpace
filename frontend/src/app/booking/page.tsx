@@ -9,6 +9,9 @@ import App from "next/app";
 import { BookingItem } from "../../../interfaces";
 import { addReservation } from "@/redux/features/bookSlice";
 import { addBooking } from "@/libs/bookingManager";
+import { getServerSession } from "next-auth";
+import getUserProfile from "@/libs/getUserProfile";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export default function Booking() {
   const router = useRouter()
@@ -26,13 +29,23 @@ export default function Booking() {
         bookingDate: bookingDate.toDate(),
       };
       console.log("item:",item);
-      addBooking(item)
-      router.push('/mybooking')
-      router.refresh()
+      addBooking(item);
+      finishNavigate();
     }
   };
   const [bookingDate, setbookingDate] = useState<Dayjs | null>(null);
   const [numOfRooms, setnumOfRooms] = useState<number>(1);
+
+  const finishNavigate = async () => {
+      const token = localStorage.getItem("token")
+      if (!token) router.push('/')
+      else {
+        const role = await getUserProfile(token).then(res => res.data.role);
+        if (role === 'admin') router.push('/managebooking')
+        else router.push('mybooking')
+        router.refresh()
+      }
+    }
 
   return (
     <main className="w-[100%] flex flex-col items-center space-y-4">

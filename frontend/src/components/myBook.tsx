@@ -12,9 +12,10 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { useRouter } from "next/router";
 import BookingCard from "./BookingCard";
 
-export default async function MyBook({ bookingPromise, editor }: {
+export default async function MyBook({ bookingPromise, editor, showUser }: {
   bookingPromise: Promise<any>,
-  editor: { getIndex: Function, setIndex: Function }
+  editor: { getIndex: Function, setIndex: Function },
+  showUser?: boolean
 }) {
   const bookItems = await bookingPromise
 
@@ -22,7 +23,7 @@ export default async function MyBook({ bookingPromise, editor }: {
     <>
       {bookItems.length !== 0 ? (
         bookItems.map((bookItem: any, index: number) => (
-          <BookingCard bookItem={bookItem} editor={editor} index={index}/>
+          <BookingCard bookItem={bookItem} editor={editor} index={index} showUser={showUser}/>
         ))
       ) : (
         <div className="bg-white rounded px-5 mx-5 py-2 my-2">

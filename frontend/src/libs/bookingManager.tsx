@@ -16,7 +16,6 @@ export const getBookings = async () => {
 }
 
 export const addBooking = async (item: BookingItem) => {
-  if (item.numOfRooms > 3 || item.numOfRooms < 1) alert("Sorry, You can only book from 1 to 3 rooms.")
   const response = await fetch(`http://localhost:8080/api/v1/coworkingspaces/${item.coworkingspace}/bookings`, {
     body: JSON.stringify(item),
     headers: {
@@ -25,8 +24,7 @@ export const addBooking = async (item: BookingItem) => {
     },
     method: "POST",
   })
-  if (!response.ok) alert("Failed to add bookings")
-  alert("Reservation successful")
+  if (!response.ok) alert(await response.json().then(res => res?.message))
 }
 
 export const removeBooking = async (id: string) => {
@@ -37,7 +35,7 @@ export const removeBooking = async (id: string) => {
     },
     method: "DELETE",
   })
-  if (!response.ok) alert("Failed to remove bookings")
+  if (!response.ok) alert(await response.json().then(res => res?.message))
 }
 
 export const editBooking = async (item: any) => {
@@ -50,6 +48,5 @@ export const editBooking = async (item: any) => {
     },
     method: "PUT",
   })
-  console.log(await response.text())
-  if (!response.ok) alert("Failed to edit bookings")
+  if (!response.ok) alert(await response.json().then(res => res?.message))
 }

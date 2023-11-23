@@ -5,7 +5,7 @@ import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import DateReserve from "./dateReserve";
 
-export default function BookingCard({ bookItem, editor, index, }: { bookItem: any, editor: any, index: number }) {
+export default function BookingCard({ bookItem, editor, index, showUser, }: { bookItem: any, editor: any, index: number, showUser?: boolean, }) {
 
   const [newBookingItem, setNewBookingItem] = useState<BookingItem|null>(null);
 
@@ -17,6 +17,11 @@ export default function BookingCard({ bookItem, editor, index, }: { bookItem: an
       <div className="text-xl font-bold">
         Coworking Space: {bookItem.coworkingspace.name}
       </div>
+      { !showUser ? null :
+        <div>
+          User: {bookItem.user.name}
+        </div>
+      }
       <div>
         Number of Rooms: { editor.getIndex() != index ? bookItem.numOfRooms :
           <input

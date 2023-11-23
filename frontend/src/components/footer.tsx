@@ -12,18 +12,6 @@ export default function Footer() {
       if (isPlaying) audioRef.current?.play();
       else audioRef.current?.pause();
     }, [isPlaying]);
-    // const audio = new Audio('/sound.mp3');
-    // if (!isPlaying) {
-    //   audio.loop = true;
-    //   audio.play();
-    // } else {
-    //   console.log("OK")
-    //   audio.pause();
-    //   audio.currentTime = 0;
-    // }
-
-    // setIsPlaying(!isPlaying);
-  // };
 
   return (
     <div className="bg-green-900 fixed bottom-0 left-0 right-0 text-center py-4 lg:px-4">
