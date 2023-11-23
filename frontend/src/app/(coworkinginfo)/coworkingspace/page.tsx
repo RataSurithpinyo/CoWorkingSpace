@@ -3,16 +3,14 @@ import { LinearProgress } from "@mui/material";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
-import { dbConnect } from "@/db/dbConnect";
-import HospitalDB from "@/db/models/Hospital";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import getCoworkingspaces from "@/libs/getCoworkingspaces";
 import AddCoworkingspaceForm from "@/components/addCoworkingspaceForm";
 import CoworkingspaceCatalog from "@/components/CoworkingspaceCatalog";
 
-export default async function Hospital() {
-  const hospitalsPromise = getCoworkingspaces(); // Promise
+export default async function Coworking() {
+  const coworkingPromise = getCoworkingspaces(); // Promise
   const session = await getServerSession(authOptions);
   if (!session || !session.user.token) return null;
   const profile = await getUserProfile(session.user.token);
@@ -43,10 +41,7 @@ export default async function Hospital() {
             </p>
           }
         >
-          <CoworkingspaceCatalog coworkingspacePromise={hospitalsPromise} />
-          {/* {profile.data.role == "admin" ? (
-            <AddCoworkingspaceForm action={addHospital} />
-          ) : null} */}
+          <CoworkingspaceCatalog coworkingspacePromise={coworkingPromise} />
         </Suspense>
       </div>
     </main>

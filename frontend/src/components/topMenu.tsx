@@ -31,7 +31,6 @@ export default async function TopMenu() {
       )}
 
       <div className="flex items-center">
-        {/* <TopMenuItem title="Booking" pageRef="/hospital" /> */}
         <div className="flex items-center">
           {session ? (
             <Link href="/api/auth/signout">

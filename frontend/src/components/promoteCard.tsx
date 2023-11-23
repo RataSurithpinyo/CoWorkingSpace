@@ -3,8 +3,11 @@ import VdoPlayer from "./vdoPlayer";
 import { useState } from "react";
 import useWindowListener from "@/hooks/useWindowListener";
 import { useRouter } from "next/navigation";
+import { Session, getServerSession } from "next-auth";
+import getUserProfile from "@/libs/getUserProfile";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export default function PromoteCard(session: any) {
+export default function PromoteCard({ session }: { session: Session | null }) {
   const [playing, setPlaying] = useState(true);
   useWindowListener("contextmenu", (e) => e.preventDefault());
   const router = useRouter();

@@ -6,9 +6,10 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import getUserProfile from "@/libs/getUserProfile";
 
 export default async function Home() {
+  // let sess = false;
   const session = await getServerSession(authOptions);
-  if (!session || !session.user.token) return null;
-  const profile = await getUserProfile(session.user.token);
+  // if (!session || !session.user.token) sess = false;
+  // else sess = true
   return (
     <main>
       <Banner />
