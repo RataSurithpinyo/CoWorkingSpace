@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { BookingItem } from "./../../../interfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -8,6 +9,7 @@ type BookState = {
 const initialState: BookState = { bookItems: [] };
 
 export const bookSlice = createSlice({
+  // const router = useRouter()
   name: "book",
   initialState,
   reducers: {
@@ -15,7 +17,8 @@ export const bookSlice = createSlice({
       if (state.bookItems.length < 3) {
         state.bookItems.push(action.payload.newBookingItem);
       } else {
-        throw("already booked three reservations")
+        alert('Sorry, You cannot book more than 3 reservations.')
+        window.location.reload();
       }
     },
     removeReservation: (state, action: PayloadAction<number>) => {

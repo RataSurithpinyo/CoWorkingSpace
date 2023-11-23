@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import DateReserve from "@/components/dateReserve";
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
@@ -10,6 +10,7 @@ import { BookingItem } from "../../../interfaces";
 import { addReservation } from "@/redux/features/bookSlice";
 
 export default function Booking() {
+  const router = useRouter()
   const urlParams = useSearchParams();
   const cid = urlParams.get("id");
   const coworking = urlParams.get("coworking");
@@ -26,6 +27,7 @@ export default function Booking() {
       };
       console.log("item:",item);
       dispatch(addReservation({ newBookingItem: item, coworkingspaceId: cid }));
+      router.push('/mybooking')
     }
   };
   const [bookingDate, setbookingDate] = useState<Dayjs | null>(null);
