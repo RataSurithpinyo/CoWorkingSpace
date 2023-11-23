@@ -48,7 +48,6 @@ export default async function hospitalDetailPage({
           <div className="text-md mx-5">
             Contact: {coworkingDetail.data.tel}
           </div>
-          <div className="text-md mx-5">Tel: {coworkingDetail.data.tel}</div>
           <Link
             href={`/booking?id=${params.cid}&coworking=${coworkingDetail.data.name}`}
           >

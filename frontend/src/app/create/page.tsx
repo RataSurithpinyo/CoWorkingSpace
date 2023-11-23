@@ -39,7 +39,7 @@ export default function Manage() {
       if (response.ok) {
         alert("Created coworking space successfully!");
         router.push("/coworkingspace");
-        // console.log("Created user succesfully!");
+        router.refresh();
       } else {
         alert("An Error has occured. Please try again.");
         window.location.reload();

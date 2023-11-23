@@ -10,37 +10,35 @@ export default function Signup() {
   const [email, setEmail] = useState("");
 
   const userResgister = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:8080/api/v1/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name,
-            password: password,
-            tel: tel,
-            email: email,
-          }),
+    if(name && password && tel && email){
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/v1/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: name,
+              password: password,
+              tel: tel,
+              email: email,
+            }),
+          }
+        );
+        if (response.ok) {
+          alert("Create user successfully! Please sign out and log in to use our services.")
+          console.log("Created user succesfully!");
+          router.push('/api/auth/signout')
+        } else {
+          alert("An Error has occured. Please make sure that you fill all the fields correctly.")
+          console.log("Error has occured.");
+          window.location.reload();
         }
-      );
-      if (response.ok) {
-        alert("Create user successfully! Please sign out and log in to use our services.")
-        console.log("Created user succesfully!");
-        router.push('/api/auth/signout')
-      } else {
-        alert("An Error has occured. Please make sure that you fill all the fields correctly.")
-        console.log("Error has occured.");
-        window.location.reload();
+      } catch (error) {
+        console.log(error);
       }
-      //const result = await response.json();
-      //console.log(result)
-      // enter you logic when the fetch is successful
-      //console.log(data);
-    } catch (error) {
-      console.log(error);
     }
   };
   return (
@@ -99,12 +97,12 @@ export default function Signup() {
               </label>
               <div className="mt-2">
                 <input
+                pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   id="email"
                   name="email"
-                  autoComplete="email"
                   placeholder="xxxx@yourdomain.xxx"
                   required
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

@@ -77,6 +77,7 @@ export default function Manage() {
       if (response.ok) {
         alert("Deleted coworking space successfully!");
         router.push("/coworkingspace");
+        router.refresh();
         // console.log("Created user succesfully!");
       } else {
         alert("An Error has occured. Please try again.");
